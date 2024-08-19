@@ -18,22 +18,35 @@ end
 # @param {ListNode} list2
 # @return {ListNode}
 def merge_two_lists(list1, list2)
-  merge_list = ListNode.new
-  current_list = merge_list
+  return list2 unless list1
+  return list1 unless list2
 
-  while list1 && list2
-    if list1.val < list2.val
-      current_list.next = list1
-      list1 = list1.next
-    else
-      current_list.next = list2
-      list2 = list2.next
-    end
-    current_list = current_list.next
+  if list1.val < list2.val
+    list1.next = merge_two_lists(list1.next, list2)
+    list1
+  else
+    list2.next = merge_two_lists(list1, list2.next)
+    list2
   end
-  current_list.next = list1 || list2
-  merge_list.next
 end
+
+# def merge_two_lists(list1, list2)
+#   merge_list = ListNode.new
+#   current_list = merge_list
+
+#   while list1 && list2
+#     if list1.val < list2.val
+#       current_list.next = list1
+#       list1 = list1.next
+#     else
+#       current_list.next = list2
+#       list2 = list2.next
+#     end
+#     current_list = current_list.next
+#   end
+#   current_list.next = list1 || list2
+#   merge_list.next
+# end
 # @lc code=end
 
 # list1 = ListNode.new(1, ListNode.new(2, ListNode.new(4)))
