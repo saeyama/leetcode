@@ -18,11 +18,15 @@
 def reverse_list(head)
   prev = nil
   while head
-    next_val = head.next
-    head.next = prev
-    prev = head
-    head = next_val
+    prev = ListNode.new(head.val, prev)
+    head = head.next
+    # next_val = head.next
+    # head.next = prev
+    # prev = head
+    # head = next_val
   end
   prev
 end
 # @lc code=end
+
+reverse_list(head)
